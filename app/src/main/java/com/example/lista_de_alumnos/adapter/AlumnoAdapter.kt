@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lista_de_alumnos.Alumno
 import com.example.lista_de_alumnos.R
 
-class AlumnoAdapter(private val alumnoLista:List<Alumno>) : RecyclerView.Adapter<AlumnoHolder>(){
+class AlumnoAdapter(private val alumnoLista: MutableList<Alumno>) : RecyclerView.Adapter<AlumnoHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlumnoHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,5 +20,11 @@ class AlumnoAdapter(private val alumnoLista:List<Alumno>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: AlumnoHolder, position: Int) {
         val item = alumnoLista[position]
         holder.render(item)
+    }
+
+    // Método para agregar un nuevo alumno a la lista
+    fun addAlumno(alumno: Alumno) {
+        alumnoLista.add(alumno)
+        notifyItemInserted(alumnoLista.size - 1) // Notificar el cambio en la lista
     }
 }
